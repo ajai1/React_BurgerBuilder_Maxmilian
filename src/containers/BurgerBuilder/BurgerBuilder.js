@@ -9,6 +9,8 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import Aux from "../../hoc/Auxilary/Auxilary";
 import axios from "../../axios-orders";
 
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+
 const INGREDIENT_PRICE = {
   salad: 5,
   cheese: 10,
@@ -57,7 +59,7 @@ class BurgerBuilder extends Component {
       deliverymode: "fast",
     };
     axios
-      .post("/orders.json", order)
+      .post("/orders.j", order)
       .then((response) => {
         this.setState({ loading: false, ordering: false });
       })
@@ -138,4 +140,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);
